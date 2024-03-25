@@ -1,13 +1,8 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 import re
 import time
 
 import requests as requests
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
 
     for j in range(1, 5):
