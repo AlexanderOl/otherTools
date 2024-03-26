@@ -21,7 +21,7 @@ def sitemap_feed():
     url = request.args.get('url')
     sf = SitemapFeed()
     fp = sf.process(url)
-    return jsonify({'RESULT:': fp})
+    return jsonify({'result': fp})
 
 
 @app.route('/waymore', methods=['POST'])

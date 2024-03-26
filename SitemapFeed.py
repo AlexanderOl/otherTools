@@ -31,3 +31,9 @@ class SitemapFeed:
         print(f'Result - {self._res_filename}')
 
         return os.path.join(pathlib.Path().resolve(), self._res_filename)
+
+
+if __name__ == '__main__':
+    url = 'https://example.com/sitemap.xml'
+    wp = SitemapFeed()
+    result = wp.process(url)

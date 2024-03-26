@@ -112,3 +112,8 @@ class WaymoreParser:
             return str(uuid_obj) == uuid_string
         except ValueError:
             return False
+
+if __name__ == '__main__':
+    filepath = ''
+    wp = WaymoreParser()
+    result = wp.process(filepath)
