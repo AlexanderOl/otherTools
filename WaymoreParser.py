@@ -88,8 +88,10 @@ class WaymoreParser:
             for part in split_path:
                 if part.isdigit():
                     path_key += 'numb'
-                elif self.__is_valid_uuid(part):
+                elif self.__is_valid_hash(part):
                     path_key += 'guid'
+                elif self.__is_date(part):
+                    path_key += 'date'
                 else:
                     path_key += part
             if path_key in path_without_digits:
@@ -104,12 +106,37 @@ class WaymoreParser:
                 url += f'{key}={params[key]}'
             urls.add(url)
 
-        return urls
+        if len(urls) > self._wayback_max_size:
+            urls_with_params = set()
+            for url_without_params in added_url_params:
+                params = added_url_params[url_without_params]
+                if len(params) == 0:
+                    continue
+                url = url_without_params
+                for key in params:
+                    url += f'{key}={params[key]}'
+                urls_with_params.add(url)
 
-    def __is_valid_uuid(self, uuid_string):
+            return urls_with_params
+        else:
+            return urls
+
+    def __is_date(self, string):
         try:
-            uuid_obj = uuid.UUID(uuid_string)
-            return str(uuid_obj) == uuid_string
+            datetime.strptime(string, '%Y-%m-%d')
+            return True
+        except ValueError:
+            return False
+
+    def __is_valid_hash(self, string):
+
+        if re.match(r'^[a-f0-9]{32}$', string):
+            return True
+        if re.match(r'^[a-f0-9]{16}$', string):
+            return True
+        try:
+            uuid_obj = uuid.UUID(string)
+            return str(uuid_obj) == string
         except ValueError:
             return False
 
