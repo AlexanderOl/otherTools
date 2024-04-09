@@ -1,5 +1,6 @@
 import os
 import re
+import sys
 import uuid
 import pathlib
 from urllib.parse import urlparse
@@ -142,7 +143,7 @@ class WaymoreParser:
 
 if __name__ == '__main__':
     filepath = ''
-    if len(sys.argv == 2):
+    if len(sys.argv) == 2:
         filepath = sys.argv[1]
     wp = WaymoreParser()
     result = wp.process(filepath)
