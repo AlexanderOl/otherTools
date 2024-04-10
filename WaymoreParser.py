@@ -4,6 +4,7 @@ import uuid
 import pathlib
 from urllib.parse import urlparse
 
+load_dotenv('config.env')
 
 class WaymoreParser:
     def __init__(self):
