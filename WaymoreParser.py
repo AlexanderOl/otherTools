@@ -1,7 +1,9 @@
 import os
 import re
+import sys
 import uuid
 import pathlib
+from datetime import datetime
 from urllib.parse import urlparse
 
 load_dotenv('config.env')
@@ -13,8 +15,9 @@ class WaymoreParser:
                        '\.doc$|\.docx$|\.m4v$|\.pptx$|\.ppt$|\.mp4$|\.avi$|\.mp3$', re.IGNORECASE))
         self._urls_result_filename = 'w_p_u_result.txt'
         self._domains_result_filename = 'w_p_d_result.txt'
+        self._wayback_max_size = 50000
 
-    def process(self, filepath):
+    def process(self, filepath: str):
         result_domains = os.path.join(os.environ.get("UPLOAD_FOLDER"), self._domains_result_filename)
         result_urls = os.path.join(os.environ.get("UPLOAD_FOLDER"), self._urls_result_filename)
         if os.path.exists(filepath):
@@ -143,7 +146,7 @@ class WaymoreParser:
 
 if __name__ == '__main__':
     filepath = ''
-    if len(sys.argv == 2):
+    if len(sys.argv) == 2:
         filepath = sys.argv[1]
     wp = WaymoreParser()
     result = wp.process(filepath)
