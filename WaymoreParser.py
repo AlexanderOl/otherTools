@@ -3,6 +3,7 @@ import re
 import sys
 import uuid
 import pathlib
+from dotenv import load_dotenv
 from datetime import datetime
 from urllib.parse import urlparse
 
