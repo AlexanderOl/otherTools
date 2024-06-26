@@ -26,7 +26,7 @@ class WaymoreParser:
             domains = set()
             with open(filepath) as infile:
                 for url in infile:
-
+                    filtered_url = url.replace(':443','').replace(':80','')
                     parsed_parts = urlparse(url)
                     if parsed_parts.netloc not in domains:
                         domains.add(parsed_parts.netloc)
@@ -146,6 +146,8 @@ class WaymoreParser:
             return False
 
 if __name__ == '__main__':
+    a = urlparse('https://supportageestimation.yoti.com:443/')
+
     filepath = ''
     if len(sys.argv) == 2:
         filepath = sys.argv[1]
